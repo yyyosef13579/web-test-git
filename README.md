@@ -1,11 +1,14 @@
 # web-test-git
 
-A Node.js backend for a team issue tracker: teams with members and roles,
-issues, comments with emoji reactions, a private AI chat per issue (Google
-Gemini), and an admin panel with an audit log.
+A team issue tracker with a Node.js backend and a React frontend: teams with
+members and roles, issues, comments with emoji reactions, a private AI chat per
+issue (Google Gemini), and an admin panel with an audit log.
 
 The server lives in [`backend-node/`](backend-node/). It is plain JavaScript
 (ES modules) on Express 5 with the official MongoDB driver.
+
+The web client lives in [`frontend/`](frontend/). It is React 19 with Vite and
+Tailwind CSS.
 
 ## Requirements
 
@@ -24,6 +27,17 @@ npm start               # API at http://localhost:8080/api
 
 `npm run dev` does the same but restarts the server when a file changes.
 Database indexes are created automatically on startup.
+
+In a second terminal, start the frontend:
+
+```sh
+cd frontend
+cp .env.example .env    # VITE_API_URL=http://localhost:8080/api
+npm install
+npm run dev             # app at http://localhost:5173
+```
+
+`npm run build` writes a production build to `frontend/dist/`.
 
 ## Configuration
 
