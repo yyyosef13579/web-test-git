@@ -22,10 +22,11 @@ Tailwind CSS.
 cd backend-node
 cp .env.example .env    # then fill in MONGO_URI (and GEMINI_API_KEY if you want the AI chat)
 npm install
-npm start               # API at http://localhost:8080/api
+npm run dev             # API at http://localhost:8080/api
 ```
 
-`npm run dev` does the same but restarts the server when a file changes.
+`npm run dev` restarts the server whenever a file changes. Use `npm start`
+for a plain run without watching (for example in production).
 Database indexes are created automatically on startup.
 
 In a second terminal, start the frontend:
@@ -84,11 +85,11 @@ other admins can be promoted from the admin routes.
 
 ```
 backend-node/src/
-  main.js        startup: settings, database, listen
-  app.js         the Express app: CORS, routes, error handling
-  config.js      reads the settings above
-  error.js, validation.js, logging.js
-  db/            connection helpers, collection names, indexes
-  <feature>/     auth, user, team, issue, comment, chat, admin:
-                 handler.js, routes.js and, where needed, model.js / middleware.js
+  server.js      startup: database indexes, Express, CORS, error handling, listen
+  helpers.js     shared code: settings, database, errors, input checks,
+                 sessions and the auth / admin / member permission checks
+  routes/        one file per area, each route written in one place:
+    auth.js      register, login, logout, me, profile and password
+    teams.js     teams and members
+    issues.js, comments.js, chat.js (with the Gemini call), admin.js
 ```
