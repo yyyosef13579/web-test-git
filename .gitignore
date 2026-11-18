@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Local settings with secrets (keep .env.example)
+.env
+.env.*
+!.env.example
+
+# Logs and OS files
+npm-debug.log*
+*.log
+.DS_Store
